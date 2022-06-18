@@ -9,14 +9,15 @@ let photosArray = [];
 
 
 // unsplash API
-const count = 20;
+const count = 10;
 const apiKey = 'hZ3pckoCFnAmAOISrSF_zvlZB_WG-F4pS9oP8pmwi3M';
 const query = 'houses';
 const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}&query=${query}`;
 
 function imageLoaded() {
-    console.log('image loaded');
+
     imagesLoaded++;
+    console.log(imagesLoaded)
     if (imagesLoaded === totalImages) {
         ready = true;
         loader.hidden = true;
@@ -32,7 +33,6 @@ function attributeSet(element, attributes) {
 
 }
 function displayPhotos() {
-
     // run function for each object in array
     photosArray.forEach((photo) => {
         imagesLoaded = 0;
@@ -73,9 +73,10 @@ async function getPhotos() {
 
 // load more photos if bottom of page scrolled
 window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready)
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
         ready = false;
-    getPhotos();
+        getPhotos();
+    }
 })
 
 // on load
